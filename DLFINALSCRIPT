@@ -1,0 +1,35 @@
+#!/bin/bash
+for i in `zmprov -l gadl`
+do
+output=`zmprov -l gdl $i |grep -w zimbraACE: |grep -iw owndistlist |awk '{print $2}'`
+if [[ "$output" != "" ]]
+then
+for j in $output
+do
+    echo "$i has owner `zmprov -l ga $j |grep -iw name |awk '{print $3}'`"
+done
+    else
+         echo "$i has no owner"         
+fi
+output1=`zmprov -l gdl $i |grep -w zimbraACE: |grep -iw sendtodistlist |awk '{print $2}'`
+if [[ "$output1" != "" ]]
+then
+for k in $output1
+do
+    echo "$i has senderuser `zmprov -l ga $k |grep -iw name |awk '{print $3}'`"
+done
+    else
+         echo "$i has no senderuser"
+fi
+output2=`zmprov -l gdl $i |grep -w zimbraACE: |grep -iw sendtodistlist |grep -iw grp |awk '{print $2}'`
+if [[ "$output2" != "" ]]
+then
+    for l in $output1
+    do
+    echo "$i has sendergrp `zmprov -l gdl $l |grep -iw distributionlist |awk '{print $3}'`"
+    done
+    else
+         echo "$i has no sendergrp"
+fi
+echo "----------------------------------------------------------------------------------------------------------------------------------"
+done
