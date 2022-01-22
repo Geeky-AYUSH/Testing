@@ -1,4 +1,5 @@
 #!/bin/bash
+#hello guys
 for i in `zmprov -l gadl`
 do
 output=`zmprov -l gdl $i |grep -w zimbraACE: |grep -iw owndistlist |awk '{print $2}'`
