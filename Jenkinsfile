@@ -12,7 +12,7 @@ pipeline {
 		stage ('push repo to remote host') {
  			steps {
 				echo "connect to remote host and pull down the latest version"
-				sh ' ssh -i "/root/kirti2.pem" ec2-user@ec2-13-126-73-102.ap-south-1.compute.amazonaws.com     sudo git -c /var/www/html pull'
+				sh 'sudo  ssh -i "/root/kirti2.pem" ec2-user@ec2-13-126-73-102.ap-south-1.compute.amazonaws.com     sudo git -c /var/www/html pull'
 				}
 		}
 	
